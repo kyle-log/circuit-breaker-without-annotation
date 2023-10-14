@@ -1,15 +1,11 @@
 package kylelog.circuitbreaker
 
-import io.github.resilience4j.circuitbreaker.CallNotPermittedException
 import org.springframework.cloud.client.circuitbreaker.CircuitBreaker
 import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory
 import org.springframework.cloud.client.circuitbreaker.ConfigBuilder
 import java.util.function.Function
 import java.util.function.Supplier
 
-/**
- * @author kyle.kim@daangn.com
- */
 class FakeAlwaysClosedCircuitBreakerFactory : CircuitBreakerFactory<FakeConfig, FakeConfigBuilder>() {
 
     override fun configBuilder(id: String): FakeConfigBuilder {
@@ -60,12 +56,6 @@ class FakeConfigBuilder : ConfigBuilder<FakeConfig> {
 
 class FakeAlwaysOpenCircuitBreaker : CircuitBreaker {
     override fun <T : Any> run(toRun: Supplier<T>, fallback: Function<Throwable, T>): T {
-        return fallback.apply(openException())
+        return fallback.apply(callNotPermittedException("fake"))
     }
-
-    private fun openException() = CallNotPermittedException.createCallNotPermittedException(
-        io.github.resilience4j.circuitbreaker.CircuitBreaker.ofDefaults(
-            "fake"
-        )
-    )
 }

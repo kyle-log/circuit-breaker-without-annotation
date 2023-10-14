@@ -1,8 +1,5 @@
 package kylelog.circuitbreaker
 
-/**
- * @author kyle.kim@daangn.com
- */
 interface CircuitBreaker {
     fun <T> run(name: String, block: () -> T): Result<T>
 }

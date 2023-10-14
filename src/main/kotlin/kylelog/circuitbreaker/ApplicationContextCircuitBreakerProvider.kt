@@ -1,8 +1,5 @@
 package kylelog.circuitbreaker
 
-/**
- * @author kyle.kim@daangn.com
- */
 class ApplicationContextCircuitBreakerProvider(
     circuitBreaker: CircuitBreaker
 ) {
