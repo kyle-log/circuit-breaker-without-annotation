@@ -16,8 +16,8 @@ class TestController {
     ): Result<Response> = circuit {
         when (status) {
             1 -> Response("Success")
-            2 -> throw RuntimeException()
-            else -> throw CircuitOpenException()
+            2 -> throw RuntimeException("Failed")
+            else -> throw CircuitOpenException("Open")
         }
     }
 
@@ -27,8 +27,8 @@ class TestController {
     ): Result<Response> = circuit {
         when (status) {
             1 -> Response("Success")
-            2 -> throw RuntimeException()
-            else -> throw CircuitOpenException()
+            2 -> throw RuntimeException("Failed")
+            else -> throw CircuitOpenException("Open")
         }
     }.fallback {
         Response("Fallback")
@@ -40,8 +40,8 @@ class TestController {
     ): Result<Response> = circuit {
         when (status) {
             1 -> Response("Success")
-            2 -> throw RuntimeException()
-            else -> throw CircuitOpenException()
+            2 -> throw RuntimeException("Failed")
+            else -> throw CircuitOpenException("Open")
         }
     }.fallbackIfOpen {
         Response("Fallback")
