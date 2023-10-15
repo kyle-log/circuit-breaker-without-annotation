@@ -12,29 +12,23 @@ class TestController {
 
     @GetMapping("/test")
     fun test(
-        @RequestParam status: CircuitStatus = CircuitStatus.CLOSED,
-        @RequestParam needException: Boolean = false,
+        @RequestParam status: Int?
     ): Result<Response> = circuit {
-        if (status == CircuitStatus.OPEN) {
-            throw CircuitOpenException()
-        }
-        when (needException) {
-            true -> throw RuntimeException()
-            else -> Response("Success")
+        when (status) {
+            1 -> Response("Success")
+            2 -> throw RuntimeException()
+            else -> throw CircuitOpenException()
         }
     }
 
     @GetMapping("/test/fallback")
     fun testFallback(
-        @RequestParam status: CircuitStatus = CircuitStatus.CLOSED,
-        @RequestParam needException: Boolean = false,
+        @RequestParam status: Int?
     ): Result<Response> = circuit {
-        if (status == CircuitStatus.OPEN) {
-            throw CircuitOpenException()
-        }
-        when (needException) {
-            true -> throw RuntimeException()
-            else -> Response("Success")
+        when (status) {
+            1 -> Response("Success")
+            2 -> throw RuntimeException()
+            else -> throw CircuitOpenException()
         }
     }.fallback {
         Response("Fallback")
@@ -42,24 +36,16 @@ class TestController {
 
     @GetMapping("/test/fallback-if-open")
     fun testFallbackIfOpen(
-        @RequestParam status: CircuitStatus = CircuitStatus.CLOSED,
-        @RequestParam needException: Boolean = false,
+        @RequestParam status: Int?
     ): Result<Response> = circuit {
-        if (status == CircuitStatus.OPEN) {
-            throw CircuitOpenException()
-        }
-        when (needException) {
-            true -> throw RuntimeException()
-            else -> Response("Success")
+        when (status) {
+            1 -> Response("Success")
+            2 -> throw RuntimeException()
+            else -> throw CircuitOpenException()
         }
     }.fallbackIfOpen {
         Response("Fallback")
     }
-}
-
-enum class CircuitStatus {
-    OPEN,
-    CLOSED,
 }
 
 data class Response(val message: String)
