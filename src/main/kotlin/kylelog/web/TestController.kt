@@ -4,58 +4,62 @@ import kylelog.circuitbreaker.CircuitOpenException
 import kylelog.circuitbreaker.fallback
 import kylelog.circuitbreaker.fallbackIfOpen
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class TestController {
 
-    /**
-     * expect: "Success"
-     */
-    @GetMapping("/test/1")
-    fun test1(): Result<Response> = circuit {
-        Response("Success")
+    @GetMapping("/test")
+    fun test(
+        @RequestParam status: CircuitStatus = CircuitStatus.CLOSED,
+        @RequestParam needException: Boolean = false,
+    ): Result<Response> = circuit {
+        if (status == CircuitStatus.OPEN) {
+            throw CircuitOpenException()
+        }
+        when (needException) {
+            true -> throw RuntimeException()
+            else -> Response("Success")
+        }
     }
 
-    /**
-     * expect: "Fallback"
-     */
-    @GetMapping("/test/2")
-    fun test2(): Result<Response> = circuit {
-        throw RuntimeException()
+    @GetMapping("/test/fallback")
+    fun testFallback(
+        @RequestParam status: CircuitStatus = CircuitStatus.CLOSED,
+        @RequestParam needException: Boolean = false,
+    ): Result<Response> = circuit {
+        if (status == CircuitStatus.OPEN) {
+            throw CircuitOpenException()
+        }
+        when (needException) {
+            true -> throw RuntimeException()
+            else -> Response("Success")
+        }
     }.fallback {
         Response("Fallback")
     }
 
-    /**
-     * expect: "Fallback"
-     */
-    @GetMapping("/test/3")
-    fun test3(): Result<Response> = circuit {
-        throw CircuitOpenException()
-    }.fallback {
-        Response("Fallback")
-    }
-
-    /**
-     * expect: RuntimeException()
-     */
-    @GetMapping("/test/4")
-    fun test4(): Result<Response> = circuit {
-        throw RuntimeException()
+    @GetMapping("/test/fallback-if-open")
+    fun testFallbackIfOpen(
+        @RequestParam status: CircuitStatus = CircuitStatus.CLOSED,
+        @RequestParam needException: Boolean = false,
+    ): Result<Response> = circuit {
+        if (status == CircuitStatus.OPEN) {
+            throw CircuitOpenException()
+        }
+        when (needException) {
+            true -> throw RuntimeException()
+            else -> Response("Success")
+        }
     }.fallbackIfOpen {
         Response("Fallback")
     }
+}
 
-    /**
-     * expect: "Fallback"
-     */
-    @GetMapping("/test/5")
-    fun test5(): Result<Response> = circuit {
-        throw CircuitOpenException()
-    }.fallbackIfOpen {
-        Response("Fallback")
-    }
+enum class CircuitStatus {
+    OPEN,
+    CLOSED,
 }
 
 data class Response(val message: String)

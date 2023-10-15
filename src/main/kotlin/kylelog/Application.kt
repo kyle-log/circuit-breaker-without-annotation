@@ -46,17 +46,17 @@ class CircuitBreakerConfiguration {
     @Bean
     fun customizer(): Customizer<Resilience4JCircuitBreakerFactory> {
         val timeLimiterConfig = TimeLimiterConfig.custom()
-            .timeoutDuration(Duration.ofSeconds(10))
+            .timeoutDuration(Duration.ofSeconds(5))
             .cancelRunningFuture(true)
             .build()
         val circuitBreakerConfig = CircuitBreakerConfig.custom()
-            .minimumNumberOfCalls(100) // 최소 100번 호출
-            .slidingWindowSize(100) // 100개의 요청을 기준으로
-            .failureRateThreshold(80f) // 80% 이상 실패하면
-            .waitDurationInOpenState(Duration.ofSeconds(30)) // 30초간 open
-            .enableAutomaticTransitionFromOpenToHalfOpen() // 하프오픈 이용하기
-            .permittedNumberOfCallsInHalfOpenState(10) // 10번의 하프오픈 허용
-            .maxWaitDurationInHalfOpenState(Duration.ofSeconds(10)) // 하프오픈 최대 10초 대기
+            .minimumNumberOfCalls(10)
+            .slidingWindowSize(10)
+            .failureRateThreshold(50f)
+            .waitDurationInOpenState(Duration.ofSeconds(10))
+            .enableAutomaticTransitionFromOpenToHalfOpen()
+            .permittedNumberOfCallsInHalfOpenState(2)
+            .maxWaitDurationInHalfOpenState(Duration.ofSeconds(10))
             .build()
         return Customizer { factory ->
             factory.configureDefault { id ->
