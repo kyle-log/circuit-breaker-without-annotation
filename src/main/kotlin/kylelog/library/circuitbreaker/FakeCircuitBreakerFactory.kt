@@ -1,4 +1,4 @@
-package kylelog.circuitbreaker
+package kylelog.library.circuitbreaker
 
 import org.springframework.cloud.client.circuitbreaker.CircuitBreaker
 import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory
@@ -23,7 +23,7 @@ class FakeAlwaysClosedCircuitBreakerFactory : CircuitBreakerFactory<FakeConfig, 
 
 class FakeAlwaysClosedCircuitBreaker : CircuitBreaker {
     override fun <T : Any> run(toRun: Supplier<T>, fallback: Function<Throwable, T>): T {
-        val result = runCatching { toRun.get() }
+        val result = Result.runCatching { toRun.get() }
         return when (val e = result.exceptionOrNull()) {
             null -> result.getOrThrow()
             else -> fallback.apply(e)

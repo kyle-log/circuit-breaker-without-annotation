@@ -1,4 +1,4 @@
-package kylelog.circuitbreaker
+package kylelog.library.circuitbreaker
 
 interface CircuitBreaker {
     fun <T> run(name: String, block: () -> T): Result<T>
@@ -12,6 +12,6 @@ fun <T> Result<T>.fallback(f: () -> T): Result<T> = when (this.isSuccess) {
 }
 
 fun <T> Result<T>.fallbackIfOpen(f: () -> T): Result<T> = when (this.exceptionOrNull()) {
-    is CircuitOpenException -> runCatching { f() }
+    is CircuitOpenException -> Result.runCatching { f() }
     else -> this
 }

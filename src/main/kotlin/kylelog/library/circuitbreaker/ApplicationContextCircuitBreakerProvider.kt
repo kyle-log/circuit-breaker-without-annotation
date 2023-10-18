@@ -1,10 +1,10 @@
-package kylelog.circuitbreaker
+package kylelog.library.circuitbreaker
 
 class ApplicationContextCircuitBreakerProvider(
     circuitBreaker: CircuitBreaker
 ) {
     init {
-        ApplicationContextCircuitBreakerProvider.circuitBreaker = circuitBreaker
+        Companion.circuitBreaker = circuitBreaker
     }
 
     companion object {

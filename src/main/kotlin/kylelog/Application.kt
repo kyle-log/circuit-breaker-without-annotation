@@ -4,10 +4,9 @@ import io.github.resilience4j.circuitbreaker.CircuitBreakerConfig
 import io.github.resilience4j.circuitbreaker.CircuitBreakerRegistry
 import io.github.resilience4j.timelimiter.TimeLimiterConfig
 import io.github.resilience4j.timelimiter.TimeLimiterRegistry
-import kylelog.circuitbreaker.ApplicationContextCircuitBreakerProvider
-import kylelog.circuitbreaker.CircuitBreaker
-import kylelog.circuitbreaker.StandardCircuitBreaker
-import kylelog.web.ResultReturnValueHandler
+import kylelog.library.circuitbreaker.ApplicationContextCircuitBreakerProvider
+import kylelog.library.circuitbreaker.CircuitBreaker
+import kylelog.library.circuitbreaker.StandardCircuitBreaker
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.runApplication
@@ -17,10 +16,6 @@ import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory
 import org.springframework.cloud.client.circuitbreaker.Customizer
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.http.converter.HttpMessageConverter
-import org.springframework.web.method.support.HandlerMethodReturnValueHandler
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter
 import java.time.Duration
 import java.util.function.Consumer
 
@@ -92,12 +87,4 @@ class CircuitBreakerConfiguration {
     ) = ApplicationContextCircuitBreakerProvider(
         circuitBreaker = circuitBreaker,
     )
-}
-
-@Configuration
-class WebMvcConfiguration : WebMvcConfigurer {
-
-    override fun addReturnValueHandlers(handlers: MutableList<HandlerMethodReturnValueHandler>) {
-        handlers.add(ResultReturnValueHandler())
-    }
 }

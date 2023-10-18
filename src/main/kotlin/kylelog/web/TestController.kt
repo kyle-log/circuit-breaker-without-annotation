@@ -1,8 +1,8 @@
 package kylelog.web
 
-import kylelog.circuitbreaker.CircuitOpenException
-import kylelog.circuitbreaker.fallback
-import kylelog.circuitbreaker.fallbackIfOpen
+import kylelog.library.circuitbreaker.CircuitOpenException
+import kylelog.library.circuitbreaker.fallback
+import kylelog.library.circuitbreaker.fallbackIfOpen
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController

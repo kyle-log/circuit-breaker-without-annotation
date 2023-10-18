@@ -1,7 +1,7 @@
 package kylelog.web
 
-import kylelog.circuitbreaker.ApplicationContextCircuitBreakerProvider
-import kylelog.circuitbreaker.CircuitBreaker
+import kylelog.library.circuitbreaker.ApplicationContextCircuitBreakerProvider
+import kylelog.library.circuitbreaker.CircuitBreaker
 import org.springframework.web.context.request.RequestContextHolder
 import org.springframework.web.context.request.ServletRequestAttributes
 

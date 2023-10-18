@@ -1,8 +1,7 @@
-package kylelog.circuitbreaker
+package kylelog.library.circuitbreaker
 
 import io.github.resilience4j.circuitbreaker.CallNotPermittedException
 import io.github.resilience4j.circuitbreaker.CircuitBreaker
-import kylelog.circuitbreaker.CircuitOpenException
 
 /**
  * Extensions for Resilience4j Dependencies
