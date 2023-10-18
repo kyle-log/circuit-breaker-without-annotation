@@ -15,14 +15,12 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice
  * and throws it, allowing the exception to be handled by a global exception handler.
  */
 @ControllerAdvice
-class KotlinResultFailureResponseBodyAdvice : ResponseBodyAdvice<Any> {
+class KotlinResultResponseBodyAdvice : ResponseBodyAdvice<Any> {
 
     override fun supports(
         returnType: MethodParameter,
         converterType: Class<out HttpMessageConverter<*>>,
-    ): Boolean {
-        return returnType.parameterType.isKotlinResultFailure()
-    }
+    ) = true
 
     override fun beforeBodyWrite(
         body: Any?,
@@ -32,10 +30,4 @@ class KotlinResultFailureResponseBodyAdvice : ResponseBodyAdvice<Any> {
         request: ServerHttpRequest,
         response: ServerHttpResponse,
     ): Any? = Result.success(body).getOrThrow()
-
-    private fun Class<*>.isKotlinResultFailure() = canonicalName.equals(CLASS_NAME)
-
-    companion object {
-        private const val CLASS_NAME = "kotlin.Result.Failure"
-    }
 }
