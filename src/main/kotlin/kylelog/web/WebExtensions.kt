@@ -11,7 +11,7 @@ fun <T> circuit(
     f: () -> T,
 ): Result<T> = circuitBreaker.run(name, f)
 
-fun path(): Result<String> = when (val attributes = RequestContextHolder.currentRequestAttributes()) {
+private fun path(): Result<String> = when (val attributes = RequestContextHolder.currentRequestAttributes()) {
     is ServletRequestAttributes -> Result.success(attributes.request.servletPath)
     else -> Result.failure(IllegalStateException())
 }
