@@ -12,6 +12,6 @@ fun <T> Result<T>.fallback(f: () -> T): Result<T> = when (this.isSuccess) {
 }
 
 fun <T> Result<T>.fallbackIfOpen(f: () -> T): Result<T> = when (this.exceptionOrNull()) {
-    is CircuitOpenException -> Result.runCatching { f() }
+    is CircuitOpenException -> runCatching { f() }
     else -> this
 }
