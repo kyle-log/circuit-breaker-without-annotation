@@ -5,7 +5,7 @@ import kylelog.library.circuitbreaker.CircuitBreaker
 import org.springframework.web.context.request.RequestContextHolder
 import org.springframework.web.context.request.ServletRequestAttributes
 
-fun <T> circuit(
+internal fun <T> circuit(
     circuitBreaker: CircuitBreaker = ApplicationContextCircuitBreakerProvider.get(),
     name: String = path().getOrDefault("default-circuit-breaker"),
     f: () -> T,

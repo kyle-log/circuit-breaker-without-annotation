@@ -20,7 +20,7 @@ class KotlinResultResponseBodyAdvice : ResponseBodyAdvice<Any> {
     override fun supports(
         returnType: MethodParameter,
         converterType: Class<out HttpMessageConverter<*>>,
-    ) = true
+    ) = returnType::class.java.isAssignableFrom(Result::class.java)
 
     override fun beforeBodyWrite(
         body: Any?,
@@ -29,5 +29,9 @@ class KotlinResultResponseBodyAdvice : ResponseBodyAdvice<Any> {
         selectedConverterType: Class<out HttpMessageConverter<*>>,
         request: ServerHttpRequest,
         response: ServerHttpResponse,
-    ): Any? = Result.success(body).getOrThrow()
+    ): Any? = when (body) {
+        null -> null
+        is Result<*> -> body.getOrThrow()
+        else -> body
+    }
 }
