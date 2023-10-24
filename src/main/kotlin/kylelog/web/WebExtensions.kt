@@ -16,3 +16,4 @@ private fun path(): Result<String> = when (val attributes = RequestContextHolder
     else -> Result.failure(IllegalStateException())
 }
 
+fun <T> Result<T>.get() = this.getOrThrow()

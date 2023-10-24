@@ -4,6 +4,8 @@ import io.github.resilience4j.circuitbreaker.CircuitBreakerConfig
 import io.github.resilience4j.circuitbreaker.CircuitBreakerRegistry
 import io.github.resilience4j.timelimiter.TimeLimiterConfig
 import io.github.resilience4j.timelimiter.TimeLimiterRegistry
+import kylelog.application.region.RegionService
+import kylelog.application.user.UserService
 import kylelog.library.circuitbreaker.ApplicationContextCircuitBreakerProvider
 import kylelog.library.circuitbreaker.CircuitBreaker
 import kylelog.library.circuitbreaker.StandardCircuitBreaker
@@ -24,6 +26,15 @@ class Application
 
 fun main(args: Array<String>) {
     runApplication<Application>(*args)
+}
+
+@Configuration
+class Configuration {
+    @Bean
+    fun userService() = UserService()
+
+    @Bean
+    fun regionService() = RegionService()
 }
 
 @Configuration
