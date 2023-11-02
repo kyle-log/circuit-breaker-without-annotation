@@ -1,4 +1,4 @@
-package kylelog.application.user
+package cocomo.application.user
 
 class UserService : UserFinder {
 

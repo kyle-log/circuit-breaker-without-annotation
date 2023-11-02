@@ -1,12 +1,12 @@
-package kylelog.circuitbreaker
+package cocomo.circuitbreaker
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
-import kylelog.library.circuitbreaker.CircuitOpenException
-import kylelog.library.circuitbreaker.FakeAlwaysClosedCircuitBreakerFactory
-import kylelog.library.circuitbreaker.FakeAlwaysOpenCircuitBreakerFactory
-import kylelog.library.circuitbreaker.StandardCircuitBreaker
+import cocomo.library.circuitbreaker.CircuitOpenException
+import cocomo.library.circuitbreaker.FakeAlwaysClosedCircuitBreakerFactory
+import cocomo.library.circuitbreaker.FakeAlwaysOpenCircuitBreakerFactory
+import cocomo.library.circuitbreaker.StandardCircuitBreaker
 
 class StandardCircuitBreakerSpec : FunSpec({
 

@@ -1,4 +1,4 @@
-package kylelog.library.circuitbreaker
+package cocomo.library.circuitbreaker
 
 import io.github.resilience4j.circuitbreaker.CallNotPermittedException
 import io.github.resilience4j.circuitbreaker.CircuitBreaker

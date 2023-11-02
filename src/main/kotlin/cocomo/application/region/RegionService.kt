@@ -1,4 +1,4 @@
-package kylelog.application.region
+package cocomo.application.region
 
 class RegionService : RegionFinder {
 

@@ -1,4 +1,4 @@
-package kylelog.web
+package cocomo.web
 
 import org.springframework.core.MethodParameter
 import org.springframework.http.MediaType

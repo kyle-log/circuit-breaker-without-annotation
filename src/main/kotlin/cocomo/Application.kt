@@ -1,14 +1,14 @@
-package kylelog
+package cocomo
 
 import io.github.resilience4j.circuitbreaker.CircuitBreakerConfig
 import io.github.resilience4j.circuitbreaker.CircuitBreakerRegistry
 import io.github.resilience4j.timelimiter.TimeLimiterConfig
 import io.github.resilience4j.timelimiter.TimeLimiterRegistry
-import kylelog.application.region.RegionService
-import kylelog.application.user.UserService
-import kylelog.library.circuitbreaker.ApplicationContextCircuitBreakerProvider
-import kylelog.library.circuitbreaker.CircuitBreaker
-import kylelog.library.circuitbreaker.StandardCircuitBreaker
+import cocomo.application.region.RegionService
+import cocomo.application.user.UserService
+import cocomo.library.circuitbreaker.ApplicationContextCircuitBreakerProvider
+import cocomo.library.circuitbreaker.CircuitBreaker
+import cocomo.library.circuitbreaker.StandardCircuitBreaker
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.runApplication

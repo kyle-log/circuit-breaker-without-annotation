@@ -1,11 +1,11 @@
-package kylelog.circuitbreaker
+package cocomo.circuitbreaker
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
-import kylelog.library.circuitbreaker.CircuitOpenException
-import kylelog.library.circuitbreaker.fallback
-import kylelog.library.circuitbreaker.fallbackIfOpen
+import cocomo.library.circuitbreaker.CircuitOpenException
+import cocomo.library.circuitbreaker.fallback
+import cocomo.library.circuitbreaker.fallbackIfOpen
 
 class CircuitBreakerSpec : FunSpec({
 

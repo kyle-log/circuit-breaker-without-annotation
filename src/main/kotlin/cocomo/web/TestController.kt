@@ -1,9 +1,9 @@
-package kylelog.web
+package cocomo.web
 
-import kylelog.application.region.RegionFinder
-import kylelog.application.user.UserFinder
-import kylelog.library.circuitbreaker.fallback
-import kylelog.library.circuitbreaker.fallbackIfOpen
+import cocomo.application.region.RegionFinder
+import cocomo.application.user.UserFinder
+import cocomo.library.circuitbreaker.fallback
+import cocomo.library.circuitbreaker.fallbackIfOpen
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController

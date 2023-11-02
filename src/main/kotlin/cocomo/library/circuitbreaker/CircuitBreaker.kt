@@ -1,4 +1,4 @@
-package kylelog.library.circuitbreaker
+package cocomo.library.circuitbreaker
 
 interface CircuitBreaker {
     fun <T> run(name: String, block: () -> T): Result<T>

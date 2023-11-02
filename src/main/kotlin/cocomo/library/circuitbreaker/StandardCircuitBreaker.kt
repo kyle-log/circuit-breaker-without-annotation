@@ -1,4 +1,4 @@
-package kylelog.library.circuitbreaker
+package cocomo.library.circuitbreaker
 
 import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory
 

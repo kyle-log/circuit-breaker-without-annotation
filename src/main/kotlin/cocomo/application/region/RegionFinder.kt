@@ -1,4 +1,4 @@
-package kylelog.application.region
+package cocomo.application.region
 
 interface RegionFinder {
     fun find(regionId: Long): Region

@@ -1,4 +1,4 @@
-package kylelog.application.user
+package cocomo.application.user
 
 interface UserFinder {
     fun find(userId: Long): User

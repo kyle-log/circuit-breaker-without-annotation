@@ -1,4 +1,4 @@
-package kylelog.library.circuitbreaker
+package cocomo.library.circuitbreaker
 
 class ApplicationContextCircuitBreakerProvider(
     circuitBreaker: CircuitBreaker

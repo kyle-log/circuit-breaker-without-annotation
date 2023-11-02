@@ -1,7 +1,7 @@
-package kylelog.web
+package cocomo.web
 
-import kylelog.library.circuitbreaker.ApplicationContextCircuitBreakerProvider
-import kylelog.library.circuitbreaker.CircuitBreaker
+import cocomo.library.circuitbreaker.ApplicationContextCircuitBreakerProvider
+import cocomo.library.circuitbreaker.CircuitBreaker
 import org.springframework.web.context.request.RequestContextHolder
 import org.springframework.web.context.request.ServletRequestAttributes
 
