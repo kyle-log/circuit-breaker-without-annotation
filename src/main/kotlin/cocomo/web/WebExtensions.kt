@@ -2,12 +2,13 @@ package cocomo.web
 
 import cocomo.library.circuitbreaker.ApplicationContextCircuitBreakerProvider
 import cocomo.library.circuitbreaker.CircuitBreaker
+import cocomo.library.support.replacePathVariables
 import org.springframework.web.context.request.RequestContextHolder
 import org.springframework.web.context.request.ServletRequestAttributes
 
 internal fun <T> circuit(
     circuitBreaker: CircuitBreaker = ApplicationContextCircuitBreakerProvider.get(),
-    name: String = path().getOrDefault("default-circuit-breaker"),
+    name: String = path().getOrDefault("default-circuit-breaker").replacePathVariables(),
     f: () -> T,
 ): Result<T> = circuitBreaker.run(name, f)
 
